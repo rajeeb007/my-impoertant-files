@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="parent">
+        <div class="form">
+            <h1>Signup Page</h1>
+            
+            <form action="" method='POST'>
+                {% csrf_token %}
+                <label for="fname">First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" placeholder="Enter your first name" name='fname'><br>
+
+                <label for="fname">Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" placeholder="Create a username" name='uname'><br>
+
+                <label for="fname">Email: &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="email" placeholder="Enter your email" name='email'><br>
+
+                <label for="fname">Enter Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="password" placeholder="Create a password" name='pass1'><br>
+
+                <label for="fname">Confirm Password:</label>
+                <input type="password" placeholder="Create a password" name='pass2'><br>
+
+                <button type="submit">Submit</button>
+                <p>I already have an Account? <a href="{% url 'login-page' %}">Login</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

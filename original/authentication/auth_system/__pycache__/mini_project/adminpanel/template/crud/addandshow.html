@@ -1,0 +1,84 @@
+{% extends 'base.html'%} {% block content %}
+
+<div class="col">
+  <h4 class="text-center">Customer Information</h4>
+  <div class="container">
+    <div class="text-end pe-3">
+       <form class="my-4" action="{% url 'searchusername' %}">
+        <div class="input-group mb-3">
+          <input
+            type="search"
+            name="search"
+            class="form-control"
+            placeholder="Search username"
+          />
+          <button class="btn btn-dark" type="submit" id="button-addon2">
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="text-muted">Table data</div>
+  </div>
+  {% if stu %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">USERNAME</th>
+        <th scope="col">FIRST NAME</th>
+        <th scope="col">LAST NAME</th>
+        <!-- <th scope="col">EMAIL</th> -->
+        <th scope="col">ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for st in stu %}
+      <tr>
+        <th scope="row">{{st.id}}</th>
+        <td>{{st.username}}</td>
+        <td>{{st.first_name}}</td>
+        <td>{{st.last_name}}</td>
+        <!-- <td>{{st.email}}</td> -->
+        <td>
+          <a
+            href="{% url 'updatedata' st.id %}"
+            class="text-center btn btn-success btn-sm"
+            >Edit</a
+          >
+          <form
+            action="{% url 'deletedata' st.id %}"
+            method="post"
+            class="d-inline"
+          >
+            {% csrf_token %}
+            <input
+              type="submit"
+              value="Delete"
+              class="text-center btn btn-danger btn-sm my-1"
+            />
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<span>No result found</span>
+{% endif %} {% for message in messages %}
+<div class="float-end">
+  <p class="text-danger">{{message}}</p>
+</div>
+{% endfor %}
+<span class >
+  <a href="/" class="btn btn-lg btn-secondary">Back to Home</a>
+</span>
+<span class>
+  <a href="{% url 'adminadd' %}" class="btn btn-lg btn-info fw-bold">Creat user</a>
+</span>
+
+{% endblock content%}
